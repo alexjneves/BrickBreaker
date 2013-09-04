@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace BouncingBall {
     public class GamePlayScreen : Screen {
-        Ball ball, ball2;
+        Ball ball;
         Bat bat;
         List<Brick> bricks;
         HUDLives livesHUD;
@@ -28,7 +28,6 @@ namespace BouncingBall {
             this.bricks = bricks;
 
             ball = new Ball(0, 0, game.Content.Load<Texture2D>("ball"), 0.7f, 0.5f, 7.0f, 0.99f, this.getGame());
-            ball2 = new Ball(400, 0, game.Content.Load<Texture2D>("ball"), 0.7f, 0.5f, 7.0f, 0.99f, this.getGame());
             bat = new Bat(game.getScreenWidth() / 2 - game.Content.Load<Texture2D>("bat").Width / 2, game.getScreenHeight() - 50, game.Content.Load<Texture2D>("bat"), this.getGame());
 
             scoreHUD = new HUDScore(new Vector2(10, 10), game.Content.Load<SpriteFont>("Arial"), 0);
