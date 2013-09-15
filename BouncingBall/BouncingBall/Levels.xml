@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<levels>
+  <level number='1'>
+    <layer layerNumber='0'>
+      <brick position='0'/>
+      <brick position='1'/>
+      <brick position='3'/>
+    </layer>
+    <layer layerNumber='1'>
+      <brick position='1'/>
+    </layer>
+  </level>
+  <level number='2'>
+    <layer layerNumber='0'>
+      <brick position='0'/>
+    </layer>
+  </level>
+</levels>

@@ -33,6 +33,7 @@ namespace BouncingBall {
         GameOverScreenLost gameOverScreen;
         Screens currentScreen;
 
+
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -92,6 +93,13 @@ namespace BouncingBall {
                     break;
             }
 
+            //if (gamePlayScreen != null) {
+            //    if (gamePlayScreen.IsEndOfLevel()) {
+            //        currentLevel++;
+            //        gamePlayScreen.SetUpLevel(this, levels.getLevel(currentLevel));
+            //    }
+            //}
+
             base.Update(gameTime);
         }
 
@@ -132,9 +140,7 @@ namespace BouncingBall {
         }
 
         public void StartGame() {
-            Level1 level1 = new Level1(this);
-
-            gamePlayScreen = new GamePlayScreen(this, level1.getLevelNum(), level1.getBricks());
+            gamePlayScreen = new GamePlayScreen(this);
             currentScreen = Screens.GamePlayScreen;
 
             startScreen = null;

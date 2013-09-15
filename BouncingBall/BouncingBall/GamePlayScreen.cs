@@ -20,24 +20,32 @@ namespace BouncingBall {
         HUDLevel levelHUD;
         KeyboardState keyboardState;
         SoundEffect pop;
-        int levelNum;
 
-        public GamePlayScreen(Game1 game, int level, List<Brick> bricks)
+        Levels levels;
+        int currentLevel = 1;
+
+        public GamePlayScreen(Game1 game)
             : base(game) {
-            levelNum = level;
-            this.bricks = bricks;
 
             ball = new Ball(0, 0, game.Content.Load<Texture2D>("ball"), 0.7f, 0.5f, 7.0f, 0.99f, this.getGame());
             bat = new Bat(game.getScreenWidth() / 2 - game.Content.Load<Texture2D>("bat").Width / 2, game.getScreenHeight() - 50, game.Content.Load<Texture2D>("bat"), this.getGame());
 
             scoreHUD = new HUDScore(new Vector2(10, 10), game.Content.Load<SpriteFont>("Arial"), 0);
             livesHUD = new HUDLives(new Vector2(10, 30), game.Content.Load<SpriteFont>("Arial"), 3);
-            levelHUD = new HUDLevel(new Vector2(10, 50), game.Content.Load<SpriteFont>("Arial"), level);
 
             pop = game.Content.Load<SoundEffect>("pop");
+
+            levels = new Levels(game);
+            SetUpLevel(game, levels.getLevel(currentLevel));
         }
 
         public GamePlayScreen() { }
+
+        public void SetUpLevel(Game1 game, Level level) {
+            this.bricks = level.getBricks();
+            levelHUD = new HUDLevel(new Vector2(10, 50), game.Content.Load<SpriteFont>("Arial"), level.getLevelNum());
+        }
+
 
         public void Update(GameTime gameTime) {
             keyboardState = Keyboard.GetState();
@@ -46,14 +54,14 @@ namespace BouncingBall {
             if (ball.move()) {
                 livesHUD.decreaseLives();
                 if (livesHUD.getLives() <= 0)
-                    this.getGame().EndGame(this);
+                    endGame();
             }
 
             // Bat Movement
             bat.move(keyboardState);
 
             // Collision Detection With Bat
-            if (ball.checkCollision(bat.getRectangle())) {
+            if (ball.checkCollision(bat)) {
                 if (bat.hasMoved)
                     ball.tempSpeedChange(2.0f);
                 collisionBat();
@@ -74,6 +82,32 @@ namespace BouncingBall {
             }
 
             removeBricks(toRemove);
+
+            if (IsEndOfLevel()) {
+                if (++currentLevel > levels.numLevels()) {
+                    endGame();
+                }
+                else {
+                    startNextLevel();
+                }
+            }
+        }
+
+        private void startNextLevel() {
+            SetUpLevel(getGame(), levels.getLevel(currentLevel));
+            resetBall();
+        }
+
+        private void resetBall() {
+            ball.resetPos();
+        }
+
+        private void endGame() {
+            getGame().EndGame(this);
+        }
+
+        public bool IsEndOfLevel() {
+            return bricks.Count == 0;
         }
 
         private void removeBricks(List<Brick> toRemove) {

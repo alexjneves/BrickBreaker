@@ -10,8 +10,8 @@ namespace BouncingBall {
     public class Level {
         private List<Brick> bricks;
         private int levelNumber;
-        protected static int brickWidth = 150;
-        protected static int brickHeight = 44;
+        public static int brickWidth = 150;
+        public static int brickHeight = 44;
         
 
         public Level(int levelNumber) {
@@ -26,7 +26,7 @@ namespace BouncingBall {
             return levelNumber;
         }
 
-        protected void setBricks(List<Brick> bricks) {
+        public void setBricks(List<Brick> bricks) {
             this.bricks = bricks;
         }
 

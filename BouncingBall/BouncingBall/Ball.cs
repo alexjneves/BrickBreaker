@@ -87,12 +87,6 @@ namespace BouncingBall {
 
             Region ballRegion = region(ballCentre, rect);
 
-            //if (ballRegion == Region.TopCentre) {
-            //    if (direction.Y > 0) {
-            //        return collisionHorizontalLine(py, ballCentre);
-            //    }
-            //}
-
             switch (ballRegion) {
                 case Region.TopCentre: if (direction.Y > 0)
                         return collisionHorizontalLine(py, ballCentre);
@@ -107,17 +101,46 @@ namespace BouncingBall {
                         return collisionVerticalLine(px + rect.Width, ballCentre);
                      break;
                 case Region.TopLeft: return checkCollision(px, py, ballCentre);
-                     break;
+
                 case Region.TopRight: return checkCollision(px + rect.Width, py, ballCentre);
-                     break;
+
                 case Region.BottomLeft: return checkCollision(px, py + rect.Height, ballCentre);
-                     break;
+
                 case Region.BottomRight: return checkCollision(px + rect.Width, py + rect.Height, ballCentre);
-                     break;
             }
                 
             return false;
         }
+
+        public bool checkCollision(Bat bat) {
+            var batRect = bat.getRectangle();
+            var hit = checkCollision(batRect);
+
+            if (hit)
+            {
+                Vector2 ballCentre = getBallCentre();
+                int py = rect.Y;
+                int px = rect.X;
+
+                Region ballRegion = region(ballCentre, batRect);
+                if (ballRegion == Region.TopCentre)
+                {
+                    var cx = batRect.Center.X;
+                    var sign = Math.Sign(direction.X);
+
+                    if (ballCentre.X < cx && sign == 1) {
+                        this.setVelocityX(-this.getVelocity().X);
+                    }
+
+                    if (ballCentre.X > cx && sign == -1) {
+                        this.setVelocityX(-this.getVelocity().X);
+                    }
+                }
+            }
+
+            return hit;
+        }
+
 
         public bool checkCollision(int px, int py, Vector2 ballCentre) {
             Vector2 rectPoint;
@@ -218,13 +241,7 @@ namespace BouncingBall {
                 setVelocityX(-getVelocity().X);
 
             if (getRectangle().Y + radius * 2 > viewportHeight) {
-                setRectangleY(0);
-                setRectangleX(0);
-                position.X = 0;
-                position.Y = 0;
-                direction.X = 0.5f;
-                direction.Y = 0.5f;
-                speed = originalSpeed;
+                resetPos();
                 return true;
             }
 
@@ -254,6 +271,16 @@ namespace BouncingBall {
                 return Region.TopCentre;
             else
                 return Region.BottomCentre;
+        }
+
+        private void resetPos() {
+            setRectangleY(0);
+            setRectangleX(0);
+            position.X = 0;
+            position.Y = 0;
+            direction.X = 0.5f;
+            direction.Y = 0.5f;
+            speed = originalSpeed;
         }
     }
 }

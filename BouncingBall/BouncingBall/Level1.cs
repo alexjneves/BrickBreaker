@@ -11,7 +11,6 @@ namespace BouncingBall {
         private static int level = 1;
 
         public Level1(Game1 game) : base(level) { 
-            Texture2D texture = game.Content.Load<Texture2D>("brick");
             List<Brick> bricks = new List<Brick>();
 
             Point layer1, layer2, layer3;
@@ -23,16 +22,16 @@ namespace BouncingBall {
             layer3 = new Point(topLeft + 150, layer2.Y + brickHeight);
 
             // layer 1
-            bricks.Add(new Brick(layer1.X, layer1.Y, texture, game));
-            bricks.Add(new Brick(layer1.X + brickWidth, layer1.Y, texture, game));
-            bricks.Add(new Brick(layer1.X + brickWidth * 2, layer1.Y, texture, game));
+            bricks.Add(new NormalBrick(layer1.X, layer1.Y,  game));
+            bricks.Add(new NormalBrick(layer1.X + brickWidth, layer1.Y,  game));
+            bricks.Add(new NormalBrick(layer1.X + brickWidth * 2, layer1.Y, game));
 
             // layer 2
-            bricks.Add(new Brick(layer2.X, layer2.Y, texture, game));
-            bricks.Add(new Brick(layer2.X + brickWidth, layer2.Y, texture, game));
+            bricks.Add(new NormalBrick(layer2.X, layer2.Y, game));
+            bricks.Add(new NormalBrick(layer2.X + brickWidth, layer2.Y, game));
 
             // layer 3
-            bricks.Add(new Brick(layer3.X, layer3.Y, texture, game));
+            bricks.Add(new NormalBrick(layer3.X, layer3.Y, game));
 
             setBricks(bricks);
         }

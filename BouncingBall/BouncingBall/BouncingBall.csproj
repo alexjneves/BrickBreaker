@@ -119,6 +119,8 @@
     <Compile Include="HUDLives.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Level1.cs" />
+    <Compile Include="Levels.cs" />
+    <Compile Include="NormalBrick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -132,6 +134,10 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="Levels.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BouncingBallContent\BouncingBallContent.contentproj">
