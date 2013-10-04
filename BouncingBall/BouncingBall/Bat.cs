@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BouncingBall {
     public class Bat : Sprite {
-        private const int batVelocity = 8;
+        private const int batVelocity = 15;
         private const int batLeftWidth = 11;
         private const int batCentreWidth = 173;
         private const int batRightWidth = 11;

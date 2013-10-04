@@ -19,6 +19,7 @@ namespace BouncingBall {
 
     public class Ball : Sprite {
         private Vector2 direction;
+        private Vector2 originalDirection;
         private Vector2 position;
         private float speed;
         private float originalSpeed;
@@ -29,6 +30,8 @@ namespace BouncingBall {
             : base(x, y, texture, game1) {
             direction.X = px;
             direction.Y = py;
+            originalDirection.X = px;
+            originalDirection.Y = py;
             this.speed = speed;
             originalSpeed = speed;
             radius = texture.Height / 2;
@@ -208,14 +211,8 @@ namespace BouncingBall {
         }
 
         public bool move() {
-            if (speed > originalSpeed) {                        // slow to original speed
-                if (speed * decay < originalSpeed) {
-                    speed = originalSpeed;
-                }
-                else {
-                    speed *= decay;
-                }
-            }
+            resetSpeed();
+            resetDirection();
 
             position.X += (direction.X * speed);
             position.Y += (direction.Y * speed);
@@ -226,8 +223,52 @@ namespace BouncingBall {
             return exceedBoundaries();
         }
 
+        private void resetDirection() {
+            double threshold = 0.25;
+            var multiplierX = 0.005f;
+            var multiplierY = 0.005f;
+
+            if (Math.Abs(direction.X) < threshold) {
+                if (direction.X > 0)
+                    direction.X += multiplierX;
+                else
+                    direction.X -= multiplierX;
+            }
+
+            if (Math.Abs(direction.Y) < threshold) {
+                if (direction.Y > 0)
+                    direction.Y += multiplierY;
+                else
+                    direction.Y -= multiplierY;
+            }
+
+
+            /*
+            if (direction.X < originalDirection.X)
+                direction.X += multiplierX;
+            else if (direction.X > originalDirection.X)
+                direction.X -= multiplierX;
+
+            if (direction.Y < originalDirection.Y)
+                direction.Y += multiplierY;
+            else if (direction.Y > originalDirection.Y)
+                direction.Y -= multiplierY;*/
+        }
+
+        private void resetSpeed() {
+            if (speed > originalSpeed) {
+                if (speed * decay < originalSpeed) {
+                    speed = originalSpeed;
+                }
+                else {
+                    speed *= decay;
+                }
+            }
+        }
+
         public void tempSpeedChange(float multiplier) {
-            speed *= multiplier;
+            if (speed < originalSpeed * 2)
+                speed *= multiplier;
         }
 
         private bool exceedBoundaries() {
@@ -273,13 +314,13 @@ namespace BouncingBall {
                 return Region.BottomCentre;
         }
 
-        private void resetPos() {
+        public void resetPos() {
             setRectangleY(0);
             setRectangleX(0);
             position.X = 0;
             position.Y = 0;
-            direction.X = 0.5f;
-            direction.Y = 0.5f;
+            direction.X = originalDirection.X;
+            direction.Y = originalDirection.Y;
             speed = originalSpeed;
         }
     }

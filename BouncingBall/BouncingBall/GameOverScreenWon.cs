@@ -8,8 +8,8 @@ namespace BouncingBall {
     class GameOverScreenWon : Screen {
         GamePlayScreen gamePlayScreen;
 
-        public GameOverScreenWon(Game1 game, Texture2D texture, GamePlayScreen gamePlayScreen)
-            : base(game) {
+        public GameOverScreenWon(Game1 game, Texture2D texture, GamePlayScreen gamePlayScreen, int pX, int pY)
+            : base(game, pX, pY) {
             this.setTexture(texture);
             this.gamePlayScreen = gamePlayScreen;
         }

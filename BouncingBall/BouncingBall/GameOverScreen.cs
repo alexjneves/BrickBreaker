@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace BouncingBall {
-    public class GameOverScreenLost : Screen {
+    public class GameOverScreen : Screen {
         GamePlayScreen gamePlayScreen;
 
-        public GameOverScreenLost(Game1 game, Texture2D texture, GamePlayScreen gamePlayScreen)
-            : base(game) {
+        public GameOverScreen(Game1 game, Texture2D texture, GamePlayScreen gamePlayScreen, int pX, int pY)
+            : base(game, pX, pY) {
             this.setTexture(texture);
             this.gamePlayScreen = gamePlayScreen;
         }
@@ -32,7 +32,7 @@ namespace BouncingBall {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(this.getTexture(), new Vector2(0f, 0f), Color.White);
+            spriteBatch.Draw(this.getTexture(), position, Color.White);
             gamePlayScreen.getScoreHUD().DrawFinalScore(spriteBatch);
         }
 

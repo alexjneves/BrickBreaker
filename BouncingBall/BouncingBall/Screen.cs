@@ -13,11 +13,11 @@ namespace BouncingBall {
         private KeyboardState lastState;
         protected Vector2 position;
 
-        public Screen(Game1 game) {
+        public Screen(Game1 game, int pX, int pY) {
             this.game = game;
             lastState = Keyboard.GetState();
-            position.X = 0; //(game.getScreenWidth() - texture.Width) / 2;
-            position.Y = 0;
+            position.X = pX; //(game.getScreenWidth() - texture.Width) / 2;
+            position.Y = pY;
         }
 
         public Screen() { }

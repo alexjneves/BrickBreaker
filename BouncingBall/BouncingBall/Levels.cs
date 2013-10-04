@@ -14,7 +14,7 @@ namespace BouncingBall {
         public Levels(Game1 game) {
             this.game = game;
             this.xOffset = game.getScreenWidth() / 3;
-            this.yOffset = 20;
+            this.yOffset = 75;
             CreateLevels();
         }
 

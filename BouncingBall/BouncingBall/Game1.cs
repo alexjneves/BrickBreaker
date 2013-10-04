@@ -30,9 +30,8 @@ namespace BouncingBall {
 
         StartScreen startScreen;
         GamePlayScreen gamePlayScreen;
-        GameOverScreenLost gameOverScreen;
+        GameOverScreen gameOverScreen;
         Screens currentScreen;
-
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -40,6 +39,7 @@ namespace BouncingBall {
 
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 200;
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 200;
+
         }
 
         protected override void Initialize() {
@@ -56,11 +56,13 @@ namespace BouncingBall {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            song = Content.Load<Song>("calm");
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(song);
+            //song = Content.Load<Song>("calm");
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(song);
 
-            startScreen = new StartScreen(this, Content.Load<Texture2D>("StartScreen"));
+            Texture2D startScreenTexture = Content.Load<Texture2D>("StartScreen");
+            startScreen = new StartScreen(this, startScreenTexture, getScreenWidth() / 2 - startScreenTexture.Width / 2, 20);
+
             currentScreen = Screens.StartScreen;
 
             base.LoadContent();
@@ -147,8 +149,15 @@ namespace BouncingBall {
             gameOverScreen = null;
         }
 
-        public void EndGame(GamePlayScreen gamePlayScreen) {
-            gameOverScreen = new GameOverScreenLost(this, Content.Load<Texture2D>("GameOverScreen"), gamePlayScreen);
+        public void EndGame(GamePlayScreen gamePlayScreen, int livesLeft) {
+            Texture2D gameOverTexture;
+
+            if(livesLeft <= 0)
+                gameOverTexture = Content.Load<Texture2D>("GameOverScreen");
+            else
+                gameOverTexture = Content.Load<Texture2D>("GameOverScreen");
+
+            gameOverScreen = new GameOverScreen(this, gameOverTexture, gamePlayScreen, getScreenWidth() / 2 - gameOverTexture.Width / 2, 20);
             currentScreen = Screens.GameOverScreen;
             
             gamePlayScreen = null;

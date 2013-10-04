@@ -10,8 +10,8 @@ namespace BouncingBall {
     public class Level {
         private List<Brick> bricks;
         private int levelNumber;
-        public static int brickWidth = 150;
-        public static int brickHeight = 44;
+        public static int brickWidth = 107;
+        public static int brickHeight = 50;
         
 
         public Level(int levelNumber) {

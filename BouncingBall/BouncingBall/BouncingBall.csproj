@@ -113,7 +113,7 @@
     <Compile Include="Brick.cs" />
     <Compile Include="GameOverScreenWon.cs" />
     <Compile Include="HUDLevel.cs" />
-    <Compile Include="GameOverScreenLost.cs" />
+    <Compile Include="GameOverScreen.cs" />
     <Compile Include="GamePlayScreen.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="HUDLives.cs" />

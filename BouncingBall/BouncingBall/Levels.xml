@@ -2,17 +2,88 @@
 <levels>
   <level number='1'>
     <layer layerNumber='0'>
+      <brick position='-1'/>
       <brick position='0'/>
+      <brick position='1'/>
+      <brick position='2'/>
+      <brick position='3'/>
+      <brick position='4'/>
+      <brick position='5'/>
+    </layer>
+    <layer layerNumber='1'>
+      <brick position='0'/>
+      <brick position='1'/>
+      <brick position='2'/>
+      <brick position='3'/>
+      <brick position='4'/>
+    </layer>
+    <layer layerNumber='2'>
+      <brick position='1'/>
+      <brick position='2'/>
+      <brick position='3'/>
+    </layer>
+    <layer layerNumber='3'>
+      <brick position='2'/>
+    </layer>
+  </level>
+  
+  <level number='2'>
+    <layer layerNumber='0'>
+      <brick position='-1'/>
+      <brick position='1'/>
+      <brick position='3'/>
+      <brick position='5'/>
+    </layer>
+    <layer layerNumber='1'>
+    </layer>
+    <layer layerNumber='2'>
+      <brick position='-1'/>
+      <brick position='5'/>
+    </layer>
+    <layer layerNumber='3'>
+      <brick position='2'/>
+    </layer>
+    <layer layerNumber='4'>
+      <brick position='-1'/>
+      <brick position='5'/>
+    </layer>
+    <layer layerNumber='5'>
+    </layer>
+    <layer layerNumber='6'>
+      <brick position='-1'/>
+      <brick position='1'/>
+      <brick position='3'/>
+      <brick position='5'/>
+    </layer>
+  </level>
+
+  <level number='3'>
+    <layer layerNumber='0'>
+      <brick position='-2'/>
+      <brick position='0'/>
+      <brick position='2'/>
+      <brick position='4'/>
+      <brick position='6'/>
+    </layer>
+    <layer layerNumber='1'>
+      <brick position='-1'/>
+      <brick position='1'/>
+      <brick position='3'/>
+      <brick position='5'/>
+    </layer>
+    <layer layerNumber='2'>
+      <brick position='0'/>
+      <brick position='2'/>
+      <brick position='4'/>
+    </layer>
+    <layer layerNumber='3'>
       <brick position='1'/>
       <brick position='3'/>
     </layer>
-    <layer layerNumber='1'>
-      <brick position='1'/>
+    <layer layerNumber='4'>
+      <brick position='2'/>
     </layer>
   </level>
-  <level number='2'>
-    <layer layerNumber='0'>
-      <brick position='0'/>
-    </layer>
-  </level>
+ 
 </levels>
+

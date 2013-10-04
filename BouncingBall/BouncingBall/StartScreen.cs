@@ -13,8 +13,8 @@ using Microsoft.Xna.Framework.Media;
 namespace BouncingBall {
     public class StartScreen : Screen {
 
-        public StartScreen(Game1 game, Texture2D texture)
-            : base(game) {
+        public StartScreen(Game1 game, Texture2D texture, int pX, int pY)
+            : base(game, pX, pY) {
             this.setTexture(texture);
         }
 

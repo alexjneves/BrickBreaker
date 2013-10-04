@@ -25,9 +25,9 @@ namespace BouncingBall {
         int currentLevel = 1;
 
         public GamePlayScreen(Game1 game)
-            : base(game) {
+            : base(game, 0, 0) {
 
-            ball = new Ball(0, 0, game.Content.Load<Texture2D>("ball"), 0.7f, 0.5f, 7.0f, 0.99f, this.getGame());
+            ball = new Ball(0, 0, game.Content.Load<Texture2D>("ball"), 0.7f, 0.5f, 12.0f, 0.99f, this.getGame());
             bat = new Bat(game.getScreenWidth() / 2 - game.Content.Load<Texture2D>("bat").Width / 2, game.getScreenHeight() - 50, game.Content.Load<Texture2D>("bat"), this.getGame());
 
             scoreHUD = new HUDScore(new Vector2(10, 10), game.Content.Load<SpriteFont>("Arial"), 0);
@@ -103,7 +103,7 @@ namespace BouncingBall {
         }
 
         private void endGame() {
-            getGame().EndGame(this);
+            getGame().EndGame(this, bricks.Count);
         }
 
         public bool IsEndOfLevel() {
