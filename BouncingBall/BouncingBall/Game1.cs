@@ -116,8 +116,13 @@ namespace BouncingBall {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            Rectangle mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            Texture2D background = Content.Load<Texture2D>("background");
+
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+
+            spriteBatch.Draw(background, mainFrame, Color.White);
 
             switch (currentScreen) {
                 case Screens.StartScreen:

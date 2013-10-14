@@ -31,7 +31,7 @@ namespace BouncingBall {
             bat = new Bat(game.getScreenWidth() / 2 - game.Content.Load<Texture2D>("bat").Width / 2, game.getScreenHeight() - 50, game.Content.Load<Texture2D>("bat"), this.getGame());
 
             scoreHUD = new HUDScore(new Vector2(10, 10), game.Content.Load<SpriteFont>("Arial"), 0);
-            livesHUD = new HUDLives(new Vector2(10, 30), game.Content.Load<SpriteFont>("Arial"), 3);
+            livesHUD = new HUDLives(new Vector2(10, 30), game.Content.Load<SpriteFont>("Arial"), 5);
 
             pop = game.Content.Load<SoundEffect>("pop");
 

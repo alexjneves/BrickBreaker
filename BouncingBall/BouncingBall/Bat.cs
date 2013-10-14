@@ -13,6 +13,8 @@ namespace BouncingBall {
         private const int batCentreWidth = 173;
         private const int batRightWidth = 11;
         public bool hasMoved = false;
+        private bool hasMovedLeft = false;
+        private bool hasMovedRight = false;
 
         Circle batLeft, batRight;
         Rectangle batCentre;
@@ -29,6 +31,7 @@ namespace BouncingBall {
         public void moveLeft() {
             if (exceedBoundariesLeft()) {
                 hasMoved = false;
+                hasMovedLeft = false;
                 return;
             }
 
@@ -37,11 +40,13 @@ namespace BouncingBall {
             batLeft.moveHorizontally(-batVelocity);
             batRight.moveHorizontally(-batVelocity);
             hasMoved = true;
+            hasMovedLeft = true;
         }
 
         public void moveRight() {
             if (exceedBoundariesRight()) {
                 hasMoved = false;
+                hasMovedRight = false;
                 return;
             }
 
@@ -50,6 +55,7 @@ namespace BouncingBall {
             batLeft.moveHorizontally(batVelocity);
             batRight.moveHorizontally(batVelocity);
             hasMoved = true;
+            hasMovedRight = true;
         }
 
         public void move(KeyboardState keyboardState) {
@@ -57,8 +63,11 @@ namespace BouncingBall {
                 moveLeft();
             else if (keyboardState.IsKeyDown(Keys.Right))
                 moveRight();
-            else
+            else {
                 hasMoved = false;
+                hasMovedLeft = false;
+                hasMovedRight = false;
+            }
         }
 
 
@@ -91,6 +100,18 @@ namespace BouncingBall {
             }
             
             return false;
+        }
+
+        public bool hasBatMoved() {
+            return hasMoved;
+        }
+
+        public bool hasBatMovedLeft() {
+            return hasMovedLeft;
+        }
+
+        public bool hasBatMovedRight() {
+            return hasMovedRight;
         }
      
     }

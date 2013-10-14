@@ -119,25 +119,29 @@ namespace BouncingBall {
             var batRect = bat.getRectangle();
             var hit = checkCollision(batRect);
 
-            if (hit)
-            {
+            if (hit) {
                 Vector2 ballCentre = getBallCentre();
                 int py = rect.Y;
                 int px = rect.X;
 
                 Region ballRegion = region(ballCentre, batRect);
-                if (ballRegion == Region.TopCentre)
-                {
+                if (ballRegion == Region.TopCentre) {
                     var cx = batRect.Center.X;
                     var sign = Math.Sign(direction.X);
 
-                    if (ballCentre.X < cx && sign == 1) {
+                    if (bat.hasBatMovedLeft() && sign == 1)
+                        this.setVelocityX(-this.getVelocity().X);
+
+                    if (bat.hasBatMovedRight() && sign == -1)
+                        this.setVelocityX(-this.getVelocity().X);
+
+                    /*if (ballCentre.X < cx && sign == 1) {
                         this.setVelocityX(-this.getVelocity().X);
                     }
 
                     if (ballCentre.X > cx && sign == -1) {
                         this.setVelocityX(-this.getVelocity().X);
-                    }
+                    }*/
                 }
             }
 
